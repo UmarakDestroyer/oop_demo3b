@@ -169,38 +169,34 @@ public class VerkkokauppaUI {
             System.out.println("1. Lisää tapahtuma");
             System.out.println("2. Poista tapahtuma");
             System.out.println("0. Poistu");
-
             valinta = lueKokonaisluku(0, 2, "Anna valinta");
+		
             if (valinta == 1) {
 		System.out.println(verkkokauppa.listaaMyyjat());
                 String tunniste = lueMerkkijono("Valitse myyjä:");
 		Myyja myyja = verkkokauppa.annaMyyja(tunniste);
 		if(myyja == null){
 			System.out.println("Myyjaa ei löytynyt");
-			continue;
-		}
+			continue;}
 		
 		System.out.println(verkkokauppa.listaaTuotteet());
                 String tuoteNimi = lueMerkkijono("Valitse tuote: ");
 	    	Tuote tuote = verkkokauppa.annaTuote(tuoteNimi);
 		if(tuote == null){
 			System.out.println("Tuotetta ei löytynyt");
-			continue;
-		}
-
+			continue;}
 
 		System.out.println(verkkokauppa.listaaAsiakaat());
                 String nimi = lueMerkkijono("Valitse asiakas:");
 	    	Asiakas asiakas = verkkokauppa.annaAsiakas(nimi);
 		if(asiakas == null){
 			System.out.println("Asiakasta ei löytynyt");
-			continue;
-		}
+			continue;}
 
 		tuoteMaara = -1;
 	        while( tuoteMaara <= 0 || tuoteMaara > tuote.getSaldo())	
-			int tuotemaara = lueKokonaisluku("Anna tuotemäärä: ");
-	    }
+			int tuotemaara = lueKokonaisluku("Anna tuotemäärä: ");}
+		
 	    	//Alennuksista huolehtii Ostotapahtuman konstruktori
 		Ostotapahtuma ostos = new Ostotapahtuma(asiakas, myyja, tuote, tuoteMaara);
 		verkkokauppa.lisaaTapahtuma(ostos);
@@ -217,8 +213,7 @@ public class VerkkokauppaUI {
 		    continue;
                 } else {
 		    verkkokauppa.poistaOstotapahtuma(tapahtuma); 	
-                    System.out.println("Tapahtuma poistettu!");
-                }
+                    System.out.println("Tapahtuma poistettu!");}
             } 
 	    
         }
